@@ -1,0 +1,3 @@
+postgresql_psycopg2
+Pillow
+local flavour
