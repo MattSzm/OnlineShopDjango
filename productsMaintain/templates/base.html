@@ -14,9 +14,9 @@
         <a href="/" id="logo">OnlineShop</a>
         <ul id="menu">
             {% if section == 'products' %}
-                <li><a id="selected" href="/" >Products</a></li>
+                <li><a class="active" href="{% url "product_list" %}" >Products</a></li>
             {% else %}
-                <li><a href="/" >Products</a></li>
+                <li><a href="{% url "product_list" %}" >Products</a></li>
             {% endif %}
                 <li><a href="/" >Produkty</a></li>
                 <li><a href="/" >Produkty</a></li>
@@ -29,6 +29,7 @@
                 <li><a href="/">Login </a></li>
             {% endif %}
         </ul>
+    </div>
 
     {% block content %}
         {% endblock %}

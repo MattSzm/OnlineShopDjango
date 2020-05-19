@@ -59,8 +59,21 @@ class Brand(models.Model):
         #TODO: implement later
 
 
+class Size(models.Model):
+    size = models.CharField(_('Size'), max_length=5, blank=False)
+    value = models.IntegerField(_('Value'))
+
+    def __str__(self):
+        return self.size
+
+    class Meta:
+        ordering = ('value',)
+        verbose_name = _('Size')
+        verbose_name_plural = _('Sizes')
+
+
 class Product(models.Model):
-    name = models.CharField(_('Name'), max_length=35)
+    name = models.CharField(_('Name'), max_length=50)
     description = models.TextField(_('Description'), blank=True)
     slug = models.SlugField(max_length=200, db_index=True,
                             unique=True)
@@ -82,6 +95,8 @@ class Product(models.Model):
                                 max_digits=8, decimal_places=2,
                                       blank=True)
 
+    sizes = models.ManyToManyField(Size, blank=True,
+                                   related_name='ProductWithThisSize')
     @property
     def numberOFImages(self):
         return self.images.count()
@@ -94,6 +109,14 @@ class Product(models.Model):
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
 
+    @property
+    def mainImage(self):
+        return self.images.all()[0]
+
+    def get_absolute_url(self):
+        return reverse('product_detail_view',
+                       args=[self.category.slug,
+                             self.slug])
 
 class ImageOfProduct(models.Model):
     image = models.ImageField(_('Image'), upload_to='products_images/',

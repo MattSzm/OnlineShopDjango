@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateResponseMixin, View
 from . import models
+from .forms import SizeChooseForm
+
 
 class ProductListView(TemplateResponseMixin, View):
     model = models.Product
@@ -20,6 +22,34 @@ class ProductListView(TemplateResponseMixin, View):
                                         'categories': categories,
                                         'categoryOfProducts': category,
                                         'section': 'products'})
+
+
+class ProductDetailView(TemplateResponseMixin, View):
+    models = models.Product
+    template_name = 'products/product/detail.html'
+
+    def get(self, request, category_slug, product_slug, id_image=None):
+        product = get_object_or_404(models.Product,
+                                    slug=product_slug)
+        categories = models.Category.objects.all()
+        form = SizeChooseForm()
+        form.fields['sizes'].queryset = models.Size.objects.filter(
+            ProductWithThisSize__in=[product])
+
+        if id_image:
+            main_image = get_object_or_404(models.ImageOfProduct, id=id_image)
+        else:
+            main_image = product.mainImage
+
+        return self.render_to_response({'product': product,
+                                        'form': form,
+                                        'section': 'products',
+                                        'categories': categories,
+                                        'categoryOfProductSlug':
+                                        category_slug,
+                                        'main_image': main_image})
+
+
 
 
 

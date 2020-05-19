@@ -1,4 +1,4 @@
 postgresql_psycopg2
 Pillow
 local flavour
-sorl-thumbnail 163
+sorl-thumbnail

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}
+    product.name
+{% endblock %}
+
+{% block content %}
+
+    <div class="sidebar">
+        <a href="{% url "product_list" %}">
+            <span>All Categories</span>
+        </a>
+        {% for c in categories %}
+            {% if categoryOfProductSlug == c.slug %}
+                <a href="{{ c.get_absolute_url }}" class="active">
+                     <span>{{ c.title }}</span></a>
+            {% else%}
+                <a href="{{ c.get_absolute_url }}">
+                     <span>{{ c.title }}</span></a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="product-detail">
+        {% thumbnail main_image.image "650x650" as im %}
+            <a href="{{ im.url }}">
+                <img src="{% if product.mainImage %}{{ im.url }}{% else %}
+                                   {% static "images/no_image.png" %}{% endif %}">
+            </a>
+        {% endthumbnail %}
+        <br>
+        <div id="extra">
+            {% for image in product.images.all %}
+                {% if main_image != image %}
+                    {% thumbnail image.image "150x150" as im %}
+                        <a href="{% url "product_detail_view_diff_image" categoryOfProductSlug product.slug image.id%}">
+                            <img src="{{ im.url }}">
+                            </a>
+                    {% endthumbnail %}
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+{% endblock content%}

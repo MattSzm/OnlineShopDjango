@@ -24,3 +24,8 @@ class ProductAdmin(admin.ModelAdmin):
                      'priceOnSale']
     prepopulated_fields = {'slug': ('name',)}
     inlines = [ImageInline]
+
+@admin.register(models.Size)
+class SizeAdmin(admin.ModelAdmin):
+    list_display = ['size', 'value']
+    ordering = ('value',)

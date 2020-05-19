@@ -61,6 +61,42 @@ h1, h2, h3, h4, h5, h6, a  {
     text-decoration: underline;
 }
 
+#main {
+    margin-top: 100px;
+    float:left;
+    width: 100%;
+    margin-right:-120px;
+    margin-left:250px;
+    overflow:hidden;
+}
+
+.product-list .item {
+    width:30%;
+    padding:30px 30px 150px 0;
+    float:left;
+    text-align:center;
+    line-height:1.2;
+}
+
+.product-list .item  a{
+    color: #1b1b1b;
+    position: static;
+}
+
+.product-detail{
+    text-align:justify;
+
+}
+.product-detail img{
+    float:right;
+    padding:130px 150px 20px 0;
+    margin: 0px 0px 0px 0px;
+}
+
+.product-detail #extra {
+    padding-top: 790px;
+    padding-right: 20px
+}
 
 
 
@@ -107,6 +143,7 @@ a.active,a:hover{
 .sidebar a span{
     letter-spacing: 2px;
     font-family:'Agency FB',sans-serif ;
+    text-decoration: none;
 }
 #check{
   display: none;
