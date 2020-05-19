@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Shop{% endblock title %}</title>
+    <link rel="icon" href="/productsMaintain/static/images/iconfinder_Shop_379396.png" sizes="16x16">
+    <meta name="robots" content="index,follow"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <a href="/" id="logo">OnlineShop</a>
+        <ul id="menu">
+            {% if section == 'products' %}
+                <li><a id="selected" href="/" >Products</a></li>
+            {% else %}
+                <li><a href="/" >Products</a></li>
+            {% endif %}
+                <li><a href="/" >Produkty</a></li>
+                <li><a href="/" >Produkty</a></li>
+        </ul>
+
+        <ul id="user">
+            {% if request.user.is_authenticated %}
+                <li><a href="/">Logout</a></li>
+            {% else %}
+                <li><a href="/">Login </a></li>
+            {% endif %}
+        </ul>
+
+    {% block content %}
+        {% endblock %}
+
+</body>
+</html>

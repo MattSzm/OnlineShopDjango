@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if categoryOfProducts %}
+        categoryOfProducts.title
+    {% else %}
+        Products
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="sidebar">
+    {% if not categoryOfProducts %}
+        <a href="{% url "product_list" %}" class="active">
+            <span>All Categories</span>
+        </a>
+    {% else %}
+        <a href="{% url "product_list" %}">
+            <span>All Categories</span>
+    {% endif %}
+        {% for c in categories %}
+            {% if categoryOfProducts.slug == c.slug %}
+                <a href="{{ c.get_absolute_url }}" class="active">
+                     <span>{{ c.title }}</span></a>
+            {% else%}
+                <a href="{{ c.get_absolute_url }}">
+                     <span>{{ c.title }}</span></a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+
+{% endblock content%}

@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.urls import reverse
 
 class Category(models.Model):
     title = models.CharField(_('Title'), max_length=35)
@@ -8,12 +8,12 @@ class Category(models.Model):
                             unique=True)
     @property
     def numberOfBrands(self):
-        return self.brands.count()
+        return self.brandsOfTheCategory.count()
 
     @property
     def numberOfProducts(self):
         counter = 0
-        for single in self.brands.all():
+        for single in self.brandsOfTheCategory.all():
             if single.numberOfProducts > 0:
                 counter += single.numberOfProducts
         return counter
@@ -27,14 +27,14 @@ class Category(models.Model):
         verbose_name_plural = _('Categories')
 
     def get_absolute_url(self):
-        pass
-        # TODO: implement later
-
+        return reverse('product_list_for_category', args=[self.slug])
 
 class Brand(models.Model):
-    category = models.ForeignKey(Category,
-                                related_name='brands',
-                                    on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category,blank=True,
+                                      related_name='brandsOfTheCategory',)
+    """category = models.ForeignKey(Category,
+                                related_name='brandsOfTheCategory',
+                                    on_delete=models.CASCADE)"""
     name = models.CharField(_('Name'), max_length=35)
     description = models.TextField(_('Description'), blank=True)
     slug = models.SlugField(max_length=200, db_index=True,
@@ -67,6 +67,11 @@ class Product(models.Model):
 
     brand = models.ForeignKey(Brand, related_name='products',
                               on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,
+                                 related_name='productsOfTheCategory',
+                                 on_delete=models.CASCADE,
+                                 default=0)
+
     available = models.BooleanField(_('Available'),
                                     blank=False, default=True)
     isOnSale = models.BooleanField(_('On sale'),
@@ -75,7 +80,7 @@ class Product(models.Model):
                                 max_digits=8, decimal_places=2)
     priceOnSale = models.DecimalField(_('Price on sale'),
                                 max_digits=8, decimal_places=2,
-                                            blank=True)
+                                      blank=True)
 
     @property
     def numberOFImages(self):

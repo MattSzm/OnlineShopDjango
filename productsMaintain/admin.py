@@ -8,7 +8,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Brand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ['category','name','slug']
+    list_display = ['name','slug']
     prepopulated_fields = {'slug':('name',)}
 
 class ImageInline(admin.StackedInline):
@@ -17,9 +17,9 @@ class ImageInline(admin.StackedInline):
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name','slug','brand','available',
+    list_display = ['name','category','slug','brand','available',
                     'isOnSale','price','priceOnSale']
-    list_filter = ['available','isOnSale']
+    list_filter = ['available','isOnSale','category']
     list_editable = ['price', 'available','isOnSale',
                      'priceOnSale']
     prepopulated_fields = {'slug': ('name',)}
