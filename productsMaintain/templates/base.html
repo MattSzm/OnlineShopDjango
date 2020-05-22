@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="/" id="logo">OnlineShop</a>
+        <a href="#" id="logo">OnlineShop</a>
         <ul id="menu">
             {% if section == 'products' %}
                 <li><a class="active" href="{% url "product_list" %}" >Products</a></li>
@@ -24,9 +24,9 @@
 
         <ul id="user">
             {% if request.user.is_authenticated %}
-                <li><a href="/">Logout</a></li>
+                <li><a href="{% url "logout" %}">Logout</a></li>
             {% else %}
-                <li><a href="/">Login </a></li>
+                <li><a href="{% url "login" %}">Login </a></li>
             {% endif %}
         </ul>
     </div>

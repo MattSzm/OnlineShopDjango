@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6, a  {
 
 .header #menu {
     float:left;
-    margin:0px 200px;
+    margin:0px 120px;
     padding:0;
 }
 
@@ -86,16 +86,95 @@ h1, h2, h3, h4, h5, h6, a  {
 .product-detail{
     text-align:justify;
 
+
 }
 .product-detail img{
+    position: static;
     float:right;
-    padding:130px 150px 20px 0;
-    margin: 0px 0px 0px 0px;
+    padding:130px 210px 20px 0;
+
 }
 
 .product-detail #extra {
-    padding-top: 790px;
-    padding-right: 20px
+    padding-top: 200px;
+    padding-right: 20px;
+}
+
+.product-detail #product-detail-desc{
+    display: inline-grid;
+    padding-top: 130px;
+    padding-left: 400px;
+}
+.product-detail #product-detail-desc a{
+   text-decoration: none;
+    color: #1e1e1e;
+}
+
+.logClass {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 80px 0;
+    height: 400px;
+    text-align: center;
+}
+.logClass h1 {
+    font-size: 40px;
+    transition-duration: 1s;
+    font-weight: 200;
+}
+.logClass a{
+    text-decoration: none;
+}
+.logClass p{
+     font-family:'Agency FB',sans-serif ;
+}
+
+.logClass .login-form{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    @include box-sizing(border-box);
+}
+
+.logClass .login-form form{
+    font-family:'Agency FB',sans-serif ;
+}
+.logClass .login-form form label{
+	  position: center;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+}
+#button{
+    box-shadow: 0px 0px 0px 2px #381217;
+	background:linear-gradient(to bottom, #000000 5%, #7d191e 100%);
+	background-color:#000000;
+	border-radius:10px;
+	border:1px solid #523033;
+	display:inline-block;
+	cursor:pointer;
+	color:#f5f5f5;
+	font-size:13px;
+	padding:5px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #0f1524;
+
+}
+
+.product-detail #product-detail-desc input{
+    box-shadow: 0px 0px 0px 2px #381217;
+	background:linear-gradient(to bottom, #000000 5%, #7d191e 100%);
+	background-color:#000000;
+	border-radius:10px;
+	border:1px solid #523033;
+	display:inline-block;
+	cursor:pointer;
+	color:#f5f5f5;
+	font-size:13px;
+	padding:5px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #0f1524;
 }
 
 

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+    <div class="logClass">
+        <h1>Create an account</h1>
+        <h2><p>Fill out the form below to register:</p></h2>
+        <br>
+        <div class="login-form">
+            <form action="." method="post">
+                {% for field in form %}
+                    <label>{{ field.label_tag }}</label>
+                    <br>
+                    {{ field }}
+                    <br>
+                    <br>
+                {% endfor %}
+                {% csrf_token %}
+                <input id = "button" type="submit" value="Register"></p>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

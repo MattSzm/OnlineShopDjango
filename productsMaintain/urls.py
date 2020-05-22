@@ -11,7 +11,7 @@ urlpatterns = [
     path('<slug:category_slug>/detail/<slug:product_slug>/',
          views.ProductDetailView.as_view(),
          name='product_detail_view'),
-path('<slug:category_slug>/detail/<slug:product_slug>/<int:id_image>/',
+    path('<slug:category_slug>/detail/<slug:product_slug>/<int:id_image>/',
          views.ProductDetailView.as_view(),
          name='product_detail_view_diff_image'),
 ]

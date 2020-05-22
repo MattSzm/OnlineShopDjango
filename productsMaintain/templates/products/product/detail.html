@@ -22,8 +22,26 @@
             {% endif %}
         {% endfor %}
     </div>
-    <div class="product-detail">
-        {% thumbnail main_image.image "650x650" as im %}
+     <div class="product-detail">
+
+         <div id="product-detail-desc">
+             <h1>{{ product.name }}</h1>
+            <h2><a href="{{ product.category.get_absolute_url }}">
+                    {{product.category }}</a></h2>
+            <br>
+            <h3><p class="price">{{ product.price }} $</p></h3>
+
+             <h3><form action="{% url "product_detail_view" categoryOfProductSlug product.slug %}" method="post">
+                 {{ form }}
+                 {% csrf_token %}
+                 <input type="submit" value="Add to cart">
+             </form></h3>
+             <br><br><br>
+            <p>{{ product.description|linebreaksbr }}</p>
+
+        </div>
+
+        {% thumbnail main_image.image "600x600" as im %}
             <a href="{{ im.url }}">
                 <img src="{% if product.mainImage %}{{ im.url }}{% else %}
                                    {% static "images/no_image.png" %}{% endif %}">
@@ -40,10 +58,9 @@
                     {% endthumbnail %}
                 {% endif %}
             {% endfor %}
-
         </div>
-
     </div>
+
 
 
 {% endblock content%}
