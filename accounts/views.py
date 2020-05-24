@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from . import forms
-from django.contrib.auth import login as auth_login
-from .models import ShopUser
 
 
 def register(request):

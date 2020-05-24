@@ -3,9 +3,9 @@
 {% block title %}Logout{% endblock %}
 
 {% block content %}
-    <h1>Logout</h1>
     <div class="logClass">
+        <h1>Logout</h1>
          <p> You have been successfully logged out, you can
-            <a href="{% url "login" %}">login once again</a>.</p>
+            <a href="{% url "accounts:login" %}">login once again</a>.</p>
     </div>
 {% endblock content %}

@@ -11,7 +11,7 @@
         {% endif %}
     <br>
         <div class="login-form">
-            <form action="{% url "login" %}" method="post">
+            <form action="{% url "accounts:login" %}" method="post">
                 {% for field in form %}
                     <label>{{ field.label_tag }}</label>
                     <br>
@@ -26,7 +26,7 @@
             </form>
             <br>
         </div>
-         <p>Don't have an account? <a href="{% url 'register' %}">
+         <p>Don't have an account? <a href="{% url 'accounts:register' %}">
                  Create one!</a>
          </p>
     </div>

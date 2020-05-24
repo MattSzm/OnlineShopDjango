@@ -11,22 +11,26 @@
 </head>
 <body>
     <div class="header">
-        <a href="#" id="logo">OnlineShop</a>
+        <a href="{% url "product_list" %}" id="logo">OnlineShop</a>
         <ul id="menu">
             {% if section == 'products' %}
                 <li><a class="active" href="{% url "product_list" %}" >Products</a></li>
             {% else %}
                 <li><a href="{% url "product_list" %}" >Products</a></li>
             {% endif %}
-                <li><a href="/" >Produkty</a></li>
-                <li><a href="/" >Produkty</a></li>
+                <li><a href="#" >Info</a></li>
+                <li><a {% if request.user.is_authenticated %}
+                           href="#"
+                        {% else %}
+                            href="{% url "accounts:login" %}"
+                        {% endif %}>My account</a></li>
         </ul>
 
         <ul id="user">
             {% if request.user.is_authenticated %}
-                <li><a href="{% url "logout" %}">Logout</a></li>
+                <li><a href="{% url "accounts:logout" %}">Logout</a></li>
             {% else %}
-                <li><a href="{% url "login" %}">Login </a></li>
+                <li><a href="{% url "accounts:login" %}">Login </a></li>
             {% endif %}
         </ul>
     </div>
