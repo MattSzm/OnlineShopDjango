@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% load static %}
+{% block title %}Shopping cart{% endblock %}
+{% block content %}
+    <div class="cartClass">
+        <h1>Shopping cart</h1>
+    </div>
+    <table class="cart">
+        <thead>
+            <tr>
+            <th>Products</th>
+            <th>Amount</th>
+            <th>Remove</th>
+            <th>Unit price</th>
+            <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                {% with product=item.productObject %}
+                    <tr>
+                        <td>
+                            {% thumbnail product.mainImage.image "100x100" as im %}
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{% if product.mainImage %}{{ im.url }}{% else %}
+                                                       {% static "images/no_image.png" %}{% endif %}">
+                                </a>
+                            {% endthumbnail %}
+                                 <a href="{{ product.get_absolute_url }}">
+                                     {{ product.name }}
+                                 </a>
+                        </td>
+                        <td>
+                            <form action="{% url "cart:cartUpdate" product.slug item.size.id %}" method="post">
+                                {{ item.changeQuantityForm.quantity }}
+                                <input id="buttonCart" type="submit" value="Change">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td>
+                            <a href="{% url "cart:cartRemove" product.slug item.size.id %}">Remove</a>
+                        </td>
+                        <td class="n">
+                            {{ product.price }}$
+                        </td>
+                         <td class="n">
+                                {{ item.wholePrice }}$
+                         </td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+            <tr>
+                <td>
+                    <h2>Total value:</h2>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <h2>{{ cart.cartTotalCost }}$</h2>
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="totalValue">
+
+    </div>
+
+
+{% endblock content %}

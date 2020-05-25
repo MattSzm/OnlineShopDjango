@@ -64,7 +64,7 @@ class Size(models.Model):
     value = models.IntegerField(_('Value'))
 
     def __str__(self):
-        return str(self.size).lower()
+        return str(self.size)
 
     class Meta:
         ordering = ('value',)

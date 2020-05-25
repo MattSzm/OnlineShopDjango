@@ -10,6 +10,12 @@
     <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
+    <div class="cartHead">
+        <a href="{% url "cart:cartDetail" %}">Cart:
+            {{ cart.cartTotalCost }}$
+            ({{ cart.cartCapacity }} item{{ cart.cartCapacity|pluralize:"s" }})</a>
+
+    </div>
     <div class="header">
         <a href="{% url "product_list" %}" id="logo">OnlineShop</a>
         <ul id="menu">

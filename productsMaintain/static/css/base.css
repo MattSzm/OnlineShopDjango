@@ -14,7 +14,6 @@ h1, h2, h3, h4, h5, h6, a  {
     background-size: 2600px 1300px;
     background-position-y: 250px;
     overflow:auto;
-    margin-top: 50px;
     padding:30px;
     width: 100%;
 
@@ -113,7 +112,7 @@ h1, h2, h3, h4, h5, h6, a  {
 .logClass {
     max-width: 600px;
     margin: 0 auto;
-    padding: 80px 0;
+    padding: 60px 0;
     height: 400px;
     text-align: center;
 }
@@ -146,6 +145,66 @@ h1, h2, h3, h4, h5, h6, a  {
 	  height: auto;
 	  padding: 10px;
 }
+
+
+.cartClass {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px ;
+    height: 150px;
+    text-align: center;
+}
+.cartClass h1 {
+    font-size: 40px;
+    transition-duration: 1s;
+    font-weight: 200;
+}
+table.cart{
+    margin-bottom: 100px;
+    padding-left: 70px;
+    width:97%;
+    border-spacing:0;
+    border-collapse: collapse;
+}
+table.cart th, table.cart td {
+    font-family:'Agency FB',sans-serif ;
+    font-size:24px;
+    padding:25px;
+    padding-left: 100px;
+    margin:0;
+    text-align:left;
+}
+
+table.cart a{
+    padding-top: 15px;
+    text-decoration: none;
+    color: #1b1b1b;
+}
+
+table.cart tr:nth-child(odd){
+     background: rgba(255, 242, 247, 0.33);
+}
+table.cart td.n {
+}
+
+
+.cartHead {
+    padding-right: 20px;
+    padding-top: 25px;
+    text-align: right;
+
+}
+.cartHead a{
+    font-size: 24px;
+    color: #b93632;
+    text-decoration: none;
+}
+
+.totalValue h2{
+    text-align: right;
+    padding-right: 50px;
+}
+
 #button{
     box-shadow: 0px 0px 0px 2px #381217;
 	background:linear-gradient(to bottom, #000000 5%, #7d191e 100%);
@@ -157,6 +216,22 @@ h1, h2, h3, h4, h5, h6, a  {
 	color:#f5f5f5;
 	font-size:13px;
 	padding:5px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #0f1524;
+
+}
+
+#buttonCart{
+    box-shadow: 0px 0px 0px 2px #381217;
+	background:linear-gradient(to bottom, #000000 5%, #7d191e 100%);
+	background-color:#000000;
+	border-radius:10px;
+	border:1px solid #523033;
+	display:inline-block;
+	cursor:pointer;
+	color:#f5f5f5;
+	font-size:12px;
+	padding:2px 8px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0f1524;
 

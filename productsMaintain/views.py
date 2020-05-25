@@ -50,7 +50,6 @@ class ProductDetailView(TemplateResponseMixin, View):
                                         category_slug,
                                         'main_image': main_image})
 
-
     def post(self, request, category_slug, product_slug):
         cart = Cart(request)
         product = get_object_or_404(models.Product,
@@ -58,7 +57,7 @@ class ProductDetailView(TemplateResponseMixin, View):
         size = models.Size.objects.get(id=request.POST['sizes'])
         if size:
             cart.addProduct(product, 1, size.id)
-            return redirect('cart:myCart')
+            return redirect('cart:cartDetail')
         return redirect(product)
 
 

@@ -19,17 +19,16 @@ def CartRemove(request, productSlug, sizeId):
 
     cart.removeProduct(product, sizeId)
     #todo: print message that you deleted product
-    return redirect('cart:myCart')
+    return redirect('cart:cartDetail')
 
 @require_POST
 def CartUpdate(request, productSlug, sizeId):
     cart = Cart(request)
     product = get_object_or_404(Product, slug=productSlug)
     form = CartChangeQuantity(request.POST)
-
     if form.is_valid():
         newQuantity = form.cleaned_data['quantity']
         cart.addProduct(product, newQuantity, sizeId, update=True)
     # todo: print message that you changed quantity
-    return redirect('cart:myCart')
+    return redirect('cart:cartDetail')
 
