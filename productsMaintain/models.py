@@ -30,7 +30,7 @@ class Category(models.Model):
         return reverse('product_list_for_category', args=[self.slug])
 
 class Brand(models.Model):
-    category = models.ManyToManyField(Category,blank=True,
+    category = models.ManyToManyField(Category, blank=True,
                                       related_name='brandsOfTheCategory',)
     """category = models.ForeignKey(Category,
                                 related_name='brandsOfTheCategory',

@@ -69,3 +69,11 @@ class ShopUser(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.firstName
+
+    @property
+    def CanBeDelivered(self):
+        if (self.firstName and self.lastName and
+                self.address and self.city and self.zipCode
+                    and self.telephoneNumber):
+            return True
+        return False

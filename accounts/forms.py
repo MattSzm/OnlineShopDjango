@@ -32,3 +32,19 @@ class UserRegisterForm(forms.ModelForm):
         if cleandata['password'] != cleandata['password_confirmation']:
             raise forms.ValidationError('Passwords do not match')
         return cleandata['password']
+
+
+class UserChangeDataForm(forms.ModelForm):
+    class Meta:
+        model = ShopUser
+        fields = (('email','firstName','lastName',
+                  'address', 'city','zipCode',
+                  'telephoneNumber','photo',))
+
+    def __init__(self, *args, **kwargs):
+        super(UserChangeDataForm, self).__init__(*args, **kwargs)
+        self.fields['address'].required = False
+        self.fields['zipCode'].required = False
+        self.fields['telephoneNumber'].required = False
+        self.fields['photo'].required = False
+        self.fields['city'].required = False

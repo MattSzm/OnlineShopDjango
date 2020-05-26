@@ -190,7 +190,7 @@ table.cart td.n {
 
 .cartHead {
     padding-right: 20px;
-    padding-top: 25px;
+    padding-top: 35px;
     text-align: right;
 
 }
@@ -200,10 +200,7 @@ table.cart td.n {
     text-decoration: none;
 }
 
-.totalValue h2{
-    text-align: right;
-    padding-right: 50px;
-}
+
 
 #button{
     box-shadow: 0px 0px 0px 2px #381217;
