@@ -39,7 +39,7 @@
     <div id="main" class="product-list">
                 {% for product in products %}
                     <div class="item">
-                        {% thumbnail product.mainImage.image "550x550"  as im %}
+                        {% thumbnail product.mainImage.image "480x480"  as im %}
                             <a href="{{ product.get_absolute_url }}">
                                 <img src="{% if product.mainImage %}{{ im.url }}{% else %}
                                     {% static "images/no_image.png" %}{% endif %}">
@@ -47,7 +47,7 @@
                         {% endthumbnail %}
                     <br>
                             <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-                                {{ product.price }} zł
+                            <h3>{{ product.price }}$</h3>
                     </div>
                 {% endfor %}
     </div>

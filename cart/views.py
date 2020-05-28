@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from cart.cart import Cart
-from .forms import CartChangeQuantity
+from .forms import CartChangeQuantity, OrderForm
 from django.views.decorators.http import require_POST
 from productsMaintain.models import Product
 from django.views.generic.base import TemplateResponseMixin, View
@@ -45,9 +45,12 @@ class OrderView(TemplateResponseMixin, View):
         if not request.user.is_authenticated:
             return HttpResponseRedirect('%s?next=%s' % (reverse('accounts:login'),
                                                 reverse('cart:createOrder')))
-        #todo: order in implementation
 
-        return self.render_to_response({})
+        canBeDelivered = request.user.CanBeDelivered
+        form = OrderForm(initial={'deliveredToAnotherAddress': False})
+
+        return self.render_to_response({'canBeDelivered': canBeDelivered,
+                                        'form': form})
 
     def post(self,request):
         pass

@@ -11,4 +11,6 @@ urlpatterns = [
         template_name='registration/logged.html'
     ), name='logout'),
     path('register/', accounts_views.register, name='register' ),
+    path('profile/dashboard', accounts_views.userDashboard.as_view(),
+         name='dashboard'),
     ]

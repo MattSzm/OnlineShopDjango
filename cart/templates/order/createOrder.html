@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Create order{% endblock %}
+{% block content %}
+    <h1 class="Checkout-header">Checkout</h1>
+
+    <div class="order">
+        <h3>Order:</h3>
+        <ul>
+            {% for item in cart %}
+                {% with product=item.productObject %}
+                    <li>
+                        {{ item.quantity }}x {{ product.name }}
+                        <span>{{ item.wholePrice }}$</span>
+                    </li>
+
+
+                {% endwith %}
+            {% endfor %}
+        </ul>
+        <br>
+        <h5>
+            Total value:
+            <span>{{ cart.cartTotalCost }}$</span>
+        </h5>
+    </div>
+    <div class="order-form">
+        {% if canBeDelivered %}
+            <h1>Your details:</h1>
+            <h3>{{ request.user.firstName }}</h3>
+            <h3>{{ request.user.lastName }}</h3>
+            <h3>{{ request.user.address }}</h3>
+            <h3>{{ request.user.city }}</h3>
+            <h3>{{ request.user.zipCode }}</h3>
+            <h3>{{ request.user.telephoneNumber }}</h3>
+        {% else %}
+            <h2><a href="{% url "accounts:dashboard" %}">Fill in your profile information.</a></h2>
+            <h2>It will save your time during future purchases.</h2>
+        {% endif %}
+
+        <br>
+        <form action="." method="post">
+            {% for field in form %}
+                 <label>{{ field.label_tag }}</label>
+                 <br>
+                 {{ field }}
+                 <br>
+                 <br>
+            {% endfor %}
+            {% csrf_token %}
+            <input type="submit" id="Payment"value="Payment" >
+        </form>
+
+    </div>
+
+{% endblock content %}
+
+
+

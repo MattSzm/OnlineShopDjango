@@ -39,7 +39,7 @@ class UserChangeDataForm(forms.ModelForm):
         model = ShopUser
         fields = (('email','firstName','lastName',
                   'address', 'city','zipCode',
-                  'telephoneNumber','photo',))
+                  'telephoneNumber', 'photo',))
 
     def __init__(self, *args, **kwargs):
         super(UserChangeDataForm, self).__init__(*args, **kwargs)

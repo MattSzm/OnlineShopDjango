@@ -1,6 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from . import forms
 from django.core.mail import send_mail
+from django.views.generic.base import TemplateResponseMixin, View
+from .forms import UserChangeDataForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from cart import models as cartModels
+from .models import ShopUser
 
 
 def register(request):
@@ -28,3 +34,24 @@ def register(request):
     form = forms.UserRegisterForm()
     return render(request, 'registration/register.html',
                       {'form': form})
+
+
+class userDashboard(TemplateResponseMixin, View):
+    model = ShopUser
+    template_name = 'maintenance/profileEdit.html'
+
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect('%s?next=%s' % (reverse('accounts:login'),
+                                                reverse('cart:createOrder')))
+
+        form = UserChangeDataForm(instance=request.user)
+        orders = cartModels.Order.objects.filter(user=request.user)
+
+        return self.render_to_response({'form': form,
+                                        'orders': orders})
+
+
+    def post(self, request):
+        pass
+        #todo: implement in future!!!!
