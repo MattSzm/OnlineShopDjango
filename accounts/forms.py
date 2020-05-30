@@ -21,6 +21,8 @@ class UserRegisterForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['firstName'].required = False
+        self.fields['lastName'].required = False
         self.fields['address'].required = False
         self.fields['zipCode'].required = False
         self.fields['telephoneNumber'].required = False
@@ -43,6 +45,8 @@ class UserChangeDataForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserChangeDataForm, self).__init__(*args, **kwargs)
+        self.fields['firstName'].required = False
+        self.fields['lastName'].required = False
         self.fields['address'].required = False
         self.fields['zipCode'].required = False
         self.fields['telephoneNumber'].required = False

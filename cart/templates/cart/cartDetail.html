@@ -30,7 +30,7 @@
                             {% endthumbnail %}
                                  <a href="{{ product.get_absolute_url }}">
                                      {{ product.name }}
-                                 </a>
+                                 </a>  [{{ item.size }}]
                         </td>
                         <td>
                             <form action="{% url "cart:cartUpdate" product.slug item.size.id %}" method="post">
@@ -65,7 +65,11 @@
         </tbody>
     </table>
     <div class="createOrderOptions">
-        <a id="buttonCreateOrder" href="{% url "cart:createOrder" %}">Checkout</a>
+        {% if cart.isEmpty %}
+            <a id="buttonCreateOrder-notActive" href="#">Checkout</a>
+        {% else %}
+            <a id="buttonCreateOrder" href="{% url "cart:createOrder" %}">Checkout</a>
+        {% endif %}
     </div>
 
 {% endblock content %}

@@ -77,3 +77,9 @@ class Cart:
 
     def createFullName(self, productId, sizeId):
         return str(productId) + '.' + str(sizeId)
+
+    @property
+    def isEmpty(self):
+        if len(self.cart) == 0:
+            return True
+        return False

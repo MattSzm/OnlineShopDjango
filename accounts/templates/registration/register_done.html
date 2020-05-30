@@ -4,7 +4,11 @@
 
 {% block content %}
     <div class="logClass">
-        <h1>Hello, {{ new_user.firstName }} {{ new_user.lastName }}!</h1>
+        {% if new_user.firstName and new_user.lastName %}
+            <h1>Hello, {{ new_user.firstName }} {{ new_user.lastName }}!</h1>
+        {% else %}
+            <h1>Hello, {{ new_user.email }} !</h1>
+        {% endif %}
         <h2><p>Your account has been created.</p></h2>
         <p>You can <a href="{% url "accounts:login" %}">login here!</a></p>
     </div>

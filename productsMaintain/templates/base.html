@@ -10,6 +10,7 @@
     <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
+
     <div class="cartHead">
         <a href="{% url "cart:cartDetail" %}">Cart:
             {{ cart.cartTotalCost }}$
@@ -24,12 +25,14 @@
             {% else %}
                 <li><a href="{% url "product_list" %}" >Products</a></li>
             {% endif %}
+
                 <li><a href="#" >Info</a></li>
-                <li><a {% if request.user.is_authenticated %}
-                           href="#"
-                        {% else %}
-                            href="{% url "accounts:login" %}"
-                        {% endif %}>My account</a></li>
+
+            {% if section == 'myaccount' %}
+                <li><a class="active" href="{% url "accounts:dashboard" %}">My account</a></li>
+            {% else %}
+                 <li><a href="{% url "accounts:dashboard" %}" >My account</a></li>
+            {% endif %}
         </ul>
 
         <ul id="user">
@@ -40,7 +43,16 @@
             {% endif %}
         </ul>
     </div>
-
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="" class="close">x</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     {% block content %}
         {% endblock %}
 

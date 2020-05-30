@@ -3,6 +3,7 @@ from accounts.models import ShopUser
 from django.utils.translation import gettext_lazy as _
 from productsMaintain.models import Product, Size
 from localflavor.us.models import USPostalCodeField
+from django.utils import timezone
 
 class Order(models.Model):
     user = models.ForeignKey(ShopUser,
@@ -12,7 +13,8 @@ class Order(models.Model):
     created = models.DateTimeField(_('Created time'), auto_now_add=True,
                                    editable=False,
                                    blank=False)
-    payTime = models.DateTimeField(_('Payment time'), blank=True)
+    payTime = models.DateTimeField(_('Payment time'),
+                                   default=timezone.now)
 
     paid = models.BooleanField(_('Paid'), default=False)
     braintreeId = models.CharField(max_length=200, blank=True)
@@ -48,10 +50,16 @@ class Order(models.Model):
 
     @property
     def orderCost(self):
+        objects = OrderItem.objects.filter(order=self)
         total_cost = 0
-        for item in self.orderedItems:
+        for item in objects:
             total_cost += item.productCost
         return total_cost
+
+    def __iter__(self):
+        objects = OrderItem.objects.filter(order=self)
+        for single in objects:
+            yield single
 
 
 class OrderItem(models.Model):

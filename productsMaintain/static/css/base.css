@@ -218,6 +218,7 @@ table.cart td.n {
 	padding:5px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0f1524;
+    margin-bottom: 50px;
 
 }
 
@@ -251,6 +252,21 @@ table.cart td.n {
 	display:inline-block;
 	cursor:pointer;
 	color:#f5f5f5;
+	font-size:23px;
+	padding:3px 13px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #0f1524;
+}
+
+#buttonCreateOrder-notActive{
+    box-shadow: 0px 0px 0px 2px #380206;
+	background:linear-gradient(to bottom, #000000 5%, #7d0907 100%);
+	background-color:#000000;
+	border-radius:10px;
+	border:1px solid #521d1e;
+	display:inline-block;
+	cursor:pointer;
+	color: rgba(245, 245, 245, 0.38);
 	font-size:23px;
 	padding:3px 13px;
 	text-decoration:none;
@@ -302,7 +318,7 @@ table.cart td.n {
     margin-top: 50px;
     font-size:26px;
     float: right;
-    width: 650px;
+    width: 640px;
     background: rgba(255, 242, 247, 0.33);
     color: #1b1b1b;
     padding-right: 150px;
@@ -337,6 +353,48 @@ table.cart td.n {
 	  padding: 0px;
 }
 
+
+ul.messages {
+    margin:10px 50px;
+    padding:0;
+    list-style-type: none;
+}
+ul.messages li.success,
+ul.messages li.info,
+ul.messages li.error{
+    margin:0;
+    padding:14px 20px;
+    list-style:none;
+    text-decoration: none;
+    color: #ff4051;
+}
+ul.messages li.success {
+    background:#81ce81; }
+ul.messages li.success a {
+    color:#0ac33e; }
+
+ul.messages li.error {
+    background: #7d191e;
+    color: #fff2f7;
+}
+ul.messages li.error a {
+    color: #fff1f1; }
+
+ul.messages li.info {
+    background: rgba(0, 0, 0, 0.41);
+    color: whitesmoke; }
+ul.messages li.info a {
+    color: whitesmoke; }
+
+
+ul.messages li a.close {
+    margin:0;
+    float:right;
+    opacity:95%;
+    border:0;
+    box-shadow:none;
+    text-shadow:none;
+}
 
 
 .sidebar{
