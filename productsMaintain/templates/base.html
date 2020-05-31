@@ -26,13 +26,13 @@
                 <li><a href="{% url "product_list" %}" >Products</a></li>
             {% endif %}
 
-                <li><a href="#" >Info</a></li>
-
             {% if section == 'myaccount' %}
                 <li><a class="active" href="{% url "accounts:dashboard" %}">My account</a></li>
             {% else %}
                  <li><a href="{% url "accounts:dashboard" %}" >My account</a></li>
             {% endif %}
+
+               <li><a href="#" >Info</a></li>
         </ul>
 
         <ul id="user">

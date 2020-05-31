@@ -71,6 +71,13 @@ class Cart:
                           self.cart[key]['quantity']
         return totalPrice
 
+    @property
+    def shipCost(self):
+        return Decimal(10.00)
+
+    def cartTotalCostWithShip(self):
+        return self.cartTotalCost() + self.shipCost
+
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.save()

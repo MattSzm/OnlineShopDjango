@@ -14,4 +14,10 @@ urlpatterns = [
     path('<slug:category_slug>/detail/<slug:product_slug>/<int:id_image>/',
          views.ProductDetailView.as_view(),
          name='product_detail_view_diff_image'),
+    path('list/brand/<slug:brand_slug>/',
+         views.BrandListView.as_view(),
+         name='product_list_for_brand'),
+    path('list/brand/<slug:brand_slug>/<slug:category_slug>/',
+         views.BrandListView.as_view(),
+         name='product_list_for_brand_and_category'),
 ]

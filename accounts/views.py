@@ -8,6 +8,7 @@ from cart import models as cartModels
 from .models import ShopUser
 from django.urls import reverse
 from django.contrib import messages
+from django.conf import settings
 
 
 def register(request):
@@ -25,7 +26,7 @@ def register(request):
                 title = 'Thank you {} for registration - OnlineShop'.format(short_name)
                 body = 'We are happy, you are with us! You can login here: {} .\n\n' \
                        'OnlineShop Team'.format(login_url)
-                send_mail(title, body, 'testmateusz1234@gmail.com', [new_user.email])
+                send_mail(title, body, settings.EMAIL_HOST_USER, [new_user.email])
 
                 return render(request, 'registration/register_done.html',
                             {'new_user':  new_user})
@@ -54,19 +55,18 @@ class userDashboard(TemplateResponseMixin, View):
 
         form = UserChangeDataForm(instance=request.user)
         orders = cartModels.Order.objects.filter(user=request.user)
+        orders = orders.filter(paid=True)
 
         return self.render_to_response({'form': form,
                                         'orders': orders,
                                         'section': 'myaccount'})
 
-
     def post(self, request):
         form  = UserChangeDataForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-
+            messages.success(request, 'Modification completed successfully.')
+        else:
+            messages.error(request, 'You need to enter the correct data')
         return redirect(reverse('accounts:dashboard'))
-
-
-
 

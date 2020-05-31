@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from productsMaintain.models import Product, Size
 from localflavor.us.models import USPostalCodeField
 from django.utils import timezone
+from decimal import Decimal
 
 class Order(models.Model):
     user = models.ForeignKey(ShopUser,
@@ -49,12 +50,20 @@ class Order(models.Model):
         return str(self.id)
 
     @property
-    def orderCost(self):
+    def orderCostWithoutShipping(self):
         objects = OrderItem.objects.filter(order=self)
         total_cost = 0
         for item in objects:
             total_cost += item.productCost
         return total_cost
+
+    @property
+    def shipCost(self):
+        return Decimal(10.00)
+
+    @property
+    def orderCost(self):
+        return self.orderCostWithoutShipping + self.shipCost
 
     def __iter__(self):
         objects = OrderItem.objects.filter(order=self)

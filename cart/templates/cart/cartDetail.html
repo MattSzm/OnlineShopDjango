@@ -11,6 +11,7 @@
         <thead>
             <tr>
             <th>Products</th>
+                <th>Brand</th>
             <th>Amount</th>
             <th>Remove</th>
             <th>Unit price</th>
@@ -31,6 +32,11 @@
                                  <a href="{{ product.get_absolute_url }}">
                                      {{ product.name }}
                                  </a>  [{{ item.size }}]
+                        </td>
+                        <td>
+                            <a href="{{ product.brand.get_absolute_url }}">{{ product.brand }}</a>
+
+
                         </td>
                         <td>
                             <form action="{% url "cart:cartUpdate" product.slug item.size.id %}" method="post">
@@ -55,6 +61,7 @@
                 <td>
                     <h2>Total value:</h2>
                 </td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

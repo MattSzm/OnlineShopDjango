@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}
+    {{ brand }}
+    {% if categoryOfProducts %}
+        categoryOfProducts.title
+    {% else %}
+        Products
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="sidebar">
+    {% if not categoryOfProducts %}
+        <a href="{% url "product_list" %}" class="active">
+            <span>All Categories</span>
+        </a>
+    {% else %}
+        <a href="{% url "product_list" %}">
+            <span>All Categories</span>
+        </a>
+    {% endif %}
+        {% for c in categories %}
+            {% if categoryOfProducts.slug == c.slug %}
+                <a href="{% url "product_list_for_brand_and_category" brand.slug c.slug%}" class="active">
+                     <span>{{ c.title }}</span></a>
+            {% else%}
+                <a href="{% url "product_list_for_brand_and_category" brand.slug c.slug%}">
+                     <span>{{ c.title }}</span></a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="main" class="product-list">
+        <div class="brand">
+            {% thumbnail brand.logo "300x300" as ib %}
+                <img src="{% if brand.logo %}{{ ib.url }}{% else %}
+                       {% static "images/no_image.png" %}{% endif %}">
+            {% endthumbnail %}
+            <span>{{ brand.description|linebreaksbr }}</span>
+        </div>
+        {% if not products %}
+            <div class="brandNo">
+                <h1>No products in the specified category.</h1>
+            </div>
+        {% else %}
+            {% for product in products %}
+                        <div class="item">
+                            {% thumbnail product.mainImage.image "460x460"  as im %}
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{% if product.mainImage %}{{ im.url }}{% else %}
+                                        {% static "images/no_image.png" %}{% endif %}">
+                                </a>
+                            {% endthumbnail %}
+                        <br>
+                            <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                            <h2>{{ product.brand }}</h2>
+                                <h3>{{ product.price }}$</h3>
+                        </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+{% endblock content%}

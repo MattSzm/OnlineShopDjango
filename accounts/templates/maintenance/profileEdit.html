@@ -8,22 +8,29 @@
     <div class="order">
         <h3>Previous Orders:</h3>
             {% for singleOrder in  orders %}
-                <ul>
-                {% for singleItem in singleOrder %}
-                    <li>
-                        {{ singleItem.quantity }}x {{ singleItem.product.name }}
-                          [{{ singleItem.size }}]
-                        <span>{{ singleItem.productCost }}$</span>
-                    </li>
-                {% endfor %}
-                </ul>
-                <br>
-                <h5>
-                    Total value:
-                    <span>{{ singleOrder.orderCost }}$</span>
-                </h5>
-                <br>
-                <br>
+                    <ul>
+                    {% for singleItem in singleOrder %}
+                        <li>
+                            {{ singleItem.quantity }}x
+                             <a href="{% url "product_detail_view" singleItem.product.brand.slug singleItem.product.slug %}">
+                                 {{ singleItem.product.name }}<a>
+                                 [{{ singleItem.size }}]
+                                 <a href="{{ singleItem.product.brand.get_absolute_url }}">{{ singleItem.product.brand }}</a>
+                            <span>{{ singleItem.productCost }}$</span>
+                        </li>
+                    {% endfor %}
+                        <li>
+                            Delivery
+                            <span>{{singleOrder.shipCost}}$</span>
+                        </li>
+                    </ul>
+                    <br>
+                    <h5>
+                        Total value:
+                        <span>{{ singleOrder.orderCost }}$</span>
+                    </h5>
+                    <br>
+                    <br>
             {% endfor %}
     </div>
 

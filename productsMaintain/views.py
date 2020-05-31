@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import  get_object_or_404, redirect
 from django.views.generic.base import TemplateResponseMixin, View
 from . import models
 from .forms import SizeChooseForm
@@ -59,6 +59,31 @@ class ProductDetailView(TemplateResponseMixin, View):
             cart.addProduct(product, 1, size.id)
             return redirect('cart:cartDetail')
         return redirect(product)
+
+
+class BrandListView(TemplateResponseMixin, View):
+    model = models.Product
+    template_name = 'products/product/listBrand.html'
+
+    def get(self, request, brand_slug, category_slug=None,):
+        products = models.Product.objects.all().filter(
+                                        available=True)
+        brand = get_object_or_404(models.Brand, slug=brand_slug)
+        products = products.filter(brand=brand)
+
+        categories = models.Category.objects.all()
+        category = None
+        if category_slug:
+            category = get_object_or_404(models.Category,
+                                         slug=category_slug)
+            products = products.filter(category=category)
+
+        return self.render_to_response({'products': products,
+                                        'categories': categories,
+                                        'categoryOfProducts': category,
+                                        'brand': brand,
+                                        'section': 'products'})
+
 
 
 

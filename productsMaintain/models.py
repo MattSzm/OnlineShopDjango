@@ -55,8 +55,8 @@ class Brand(models.Model):
         verbose_name_plural = _('Brands')
 
     def get_absolute_url(self):
-        pass
-        #TODO: implement later
+        return reverse('product_list_for_brand',
+                       args=[self.slug])
 
 
 class Size(models.Model):

@@ -231,7 +231,7 @@ table.cart td.n {
 	display:inline-block;
 	cursor:pointer;
 	color:#f5f5f5;
-	font-size:14px;
+	font-size:16px;
 	padding:2px 4px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0f1524;
@@ -286,7 +286,7 @@ table.cart td.n {
 	padding:3px 13px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0f1524;
-     font-family:'Agency FB',sans-serif ;
+    font-family:'Agency FB',sans-serif ;
     margin-bottom: 80px;
 }
 
@@ -313,15 +313,39 @@ table.cart td.n {
     text-align: center;
     margin-top: 50px;
 }
+.brand{
+    padding-left: 110px;
+    margin-bottom: 50px;
+    padding-top: 30px;
+}
+.brand img{
+    position: static;
+    float:left;
+}
+.brand span{
+    padding-left: 25px;
+    display: inline-grid;
+    font-family:'Agency FB',sans-serif ;
+    font-size: 18px;
+}
+.brandNo{
+    padding-left: 110px;
+    padding-top: 50px;
+}
+
 
 .order{
     margin-top: 50px;
     font-size:26px;
     float: right;
-    width: 640px;
+    width: 700px;
     background: rgba(255, 242, 247, 0.33);
     color: #1b1b1b;
     padding-right: 150px;
+}
+.order a{
+    text-decoration: none;
+    color: black;
 }
 
 .order ul li{
@@ -369,9 +393,12 @@ ul.messages li.error{
     color: #ff4051;
 }
 ul.messages li.success {
-    background:#81ce81; }
+    background: rgba(9, 93, 18, 0.38);
+    color: whitesmoke; }
 ul.messages li.success a {
-    color:#0ac33e; }
+    color: whitesmoke;
+
+}
 
 ul.messages li.error {
     background: #7d191e;
@@ -395,7 +422,15 @@ ul.messages li a.close {
     box-shadow:none;
     text-shadow:none;
 }
+.payment{
+    text-align: left;
+    font-family:'Agency FB',sans-serif;
+    margin-top: 100px;
+    font-size: 24px;
+    margin-bottom: 100px;
+    margin-left: 185px;
 
+}
 
 .sidebar{
   margin-top: 130px;

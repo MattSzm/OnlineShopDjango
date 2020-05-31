@@ -11,23 +11,30 @@
             {% for item in cart %}
                 {% with product=item.productObject %}
                     <li>
-                        {{ item.quantity }}x {{ product.name }}
+                        {{ item.quantity }}x
+                        <a href="{% url "product_detail_view" product.brand.slug product.slug %}">
+                            {{ product.name }}<a>
+                         [{{ item.size }}]
                         <span>{{ item.wholePrice }}$</span>
                     </li>
 
 
                 {% endwith %}
             {% endfor %}
+            <li>
+                Delivery
+                <span>{{cart.shipCost}}$</span>
+            </li>
         </ul>
         <br>
         <h5>
             Total value:
-            <span>{{ cart.cartTotalCost }}$</span>
+            <span>{{ cart.cartTotalCostWithShip }}$</span>
         </h5>
     </div>
     <div class="order-form">
         {% if canBeDelivered %}
-            <h1>Your details:</h1>
+            <h1><a href="{% url "accounts:dashboard" %}">Your details:</a></h1>
             <h3>{{ request.user.firstName }}</h3>
             <h3>{{ request.user.lastName }}</h3>
             <h3>{{ request.user.address }}</h3>

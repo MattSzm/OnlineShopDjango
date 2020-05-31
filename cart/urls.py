@@ -11,4 +11,8 @@ urlpatterns = [
          views.CartUpdate, name= 'cartUpdate'),
     path('order/create/', views.OrderView.as_view(),
          name = 'createOrder'),
+    path('payment/', views.payment.as_view(),
+         name = 'payment'),
+    path('payment/<int:id>/rejected', views.paymentRejected,
+         name = 'paymentRejected')
 ]
