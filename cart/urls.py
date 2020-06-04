@@ -14,5 +14,7 @@ urlpatterns = [
     path('payment/', views.payment.as_view(),
          name = 'payment'),
     path('payment/<int:id>/rejected', views.paymentRejected,
-         name = 'paymentRejected')
+         name = 'paymentRejected'),
+    path('createpdf/<int:OrderId>/', views.createPdf,
+         name = 'createPdf'),
 ]

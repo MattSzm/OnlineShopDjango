@@ -29,6 +29,7 @@
                         Total value:
                         <span>{{ singleOrder.orderCost }}$</span>
                     </h5>
+                    <h6><a href="{% url 'cart:createPdf' singleOrder.id %}">Invoice</a></h6>
                     <br>
                     <br>
             {% endfor %}

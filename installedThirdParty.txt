@@ -3,3 +3,4 @@ Pillow
 local flavour
 sorl-thumbnail
 braintree
+reportLab

@@ -5,6 +5,8 @@ from productsMaintain.models import Product, Size
 from localflavor.us.models import USPostalCodeField
 from django.utils import timezone
 from decimal import Decimal
+from django.shortcuts import redirect
+from django.urls import reverse
 
 class Order(models.Model):
     user = models.ForeignKey(ShopUser,

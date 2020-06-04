@@ -5,14 +5,16 @@ from django.views.decorators.http import require_POST
 from productsMaintain.models import Product
 from django.views.generic.base import TemplateResponseMixin, View
 from . import models
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from django.contrib import messages
 import braintree
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
-
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from io import BytesIO
 
 def CartDetail(request):
     cart = Cart(request)
@@ -79,7 +81,7 @@ class OrderView(TemplateResponseMixin, View):
                                                     size=item['size'],
                                                     quantity=item['quantity'],
                                                     costPerItem =
-                                                        item['productObject'].price)
+                                                        item['productObject'].currentPrice)
                 cart.clear()
                 request.session['orderId'] = order.id
                 return redirect(reverse('cart:payment'))
@@ -139,3 +141,93 @@ def paymentRejected(request, id):
     text = 'Order number:{} rejected.'.format(id)
     return render(request, 'payment/rejected.html',
                   {'text': text})
+
+
+def createPdf(request, OrderId):
+    order = get_object_or_404(models.Order,
+                              id=OrderId)
+    if order.user == request.user:
+        response = HttpResponse(content_type='print/pdf')
+
+        response['Content-Disposition'] = \
+            'attachment; filename="Invoice_{}.pdf"'.format(OrderId)
+
+        buffer = BytesIO()
+        p = canvas.Canvas(buffer, pagesize=A4)
+        p.setFont("Helvetica", 20, leading=None)
+        p.setFillColorRGB(0,0,0)
+        p.drawString(240,800,'Online Shop')
+        p.line(0,780,1000,780)
+        p.setFont("Helvetica", 18, leading=None)
+        p.drawString(240, 730, 'Invoice no.{}'.format(OrderId))
+
+        x=30
+        y=690
+        p.setFont("Helvetica", 15, leading=None)
+        p.drawString(x,y,'Buyer:')
+        p.drawString(x+400, y, 'Date of purchase:')
+        p.drawString(x + 400, y-38, 'Date of Payement:')
+        p.setFont("Helvetica", 12, leading=None)
+        p.drawString(x + 400, y-18, '{}'.format(order.created.date()))
+        p.drawString(x + 400, y - 56, '{}'.format(order.payTime.date()))
+        if order.deliveredToAnotherAddress:
+            p.drawString(x+2, y-18, 'First name: {}'.format(order.firstNameD))
+            p.drawString(x+2,y-36, 'Last name: {}'.format(order.lastNameD))
+            p.drawString(x+2,y-54, 'Address: {}'.format(order.addressD))
+            p.drawString(x + 2, y - 72, 'City: {}'.format(order.cityD))
+            p.drawString(x + 2, y - 90, 'Zip code: {}'.format(order.zipCodeD))
+            p.drawString(x + 2, y - 108, 'Telephone number: {}'.format(
+                order.telephoneNumberD))
+        else:
+            p.drawString(x+2, y-18, 'First name: {}'.format(order.user.firstName))
+            p.drawString(x + 2, y - 36, 'Last name: {}'.format(order.user.lastName))
+            p.drawString(x + 2, y - 54, 'Address: {}'.format(order.user.address))
+            p.drawString(x + 2, y - 72, 'City: {}'.format(order.user.city))
+            p.drawString(x + 2, y - 90, 'Zip code: {}'.format(order.user.zipCode))
+            p.drawString(x + 2, y - 108, 'Telephone number: {}'.format(
+                order.user.telephoneNumber))
+        p.setFillColorRGB(220,220,220)
+        p.line(0, 572, 1000, 572)
+        p.setFillColorRGB(0, 0, 0)
+        x = 30
+        y = 540
+
+        #items
+        p.setFont("Helvetica", 15, leading=None)
+        p.drawString(x, y, 'Product:')
+        p.drawString(x + 120, y, 'Size:')
+        p.drawString(x + 240, y, 'Quantity:')
+        p.drawString(x + 360, y, 'Cost per item:')
+        p.drawString(x + 480, y, 'Cost:')
+        p.setFont("Helvetica", 12, leading=None)
+        count = 1
+        for item in order:
+            prodName = str(item.product)
+            if len(prodName) > 15:
+                prodName = prodName[:12]+'...'
+            p.drawString(x, y - count * 22, '{}'.format(prodName))
+            p.drawString(x + 120, y - count * 22, '{}'.format(item.size))
+            p.drawString(x + 240, y - count * 22, '{}'.format(item.quantity))
+            p.drawString(x + 360, y - count * 22, '{}'.format(item.costPerItem))
+            p.drawString(x + 480, y - count * 22, '{}'.format(item.productCost))
+            count += 1
+        p.drawString(x, y - count * 22, 'Shipping:')
+        p.drawString(x + 480, y - count * 22, '{}'.format(order.shipCost))
+        count += 1
+        p.setFont("Helvetica", 15, leading=None)
+        p.drawString(x, y - count * 22 - 12, 'Total cost:')
+        p.drawString(x + 480, y - count * 22 - 12, '{}'.format(order.orderCost))
+        p.drawString(x + 400, 80, 'Online Shop Team')
+
+        p.setTitle('Invoice_{}'.format(OrderId))
+        p.showPage()
+        p.save()
+
+        pdf = buffer.getvalue()
+        buffer.close()
+        response.write(pdf)
+
+        return response
+
+    else:
+        return HttpResponseNotFound('You cannot do it!')

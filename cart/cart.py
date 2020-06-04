@@ -51,7 +51,7 @@ class Cart:
             size = models.Size.objects.get(id=int(sizeId))
 
             cartCopy[key]['productObject'] = product
-            cartCopy[key]['wholePrice'] = product.price*\
+            cartCopy[key]['wholePrice'] = product.currentPrice*\
                                           cartCopy[key]['quantity']
             cartCopy[key]['size'] = size
             yield cartCopy[key]
@@ -67,7 +67,7 @@ class Cart:
         for key in self.cart:
             productId = str(key).rsplit('.', 1)[0]
             totalPrice += models.Product.objects.get(
-                id=int(productId)).price *\
+                id=int(productId)).currentPrice *\
                           self.cart[key]['quantity']
         return totalPrice
 

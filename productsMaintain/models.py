@@ -118,6 +118,13 @@ class Product(models.Model):
                        args=[self.category.slug,
                              self.slug])
 
+    @property
+    def currentPrice(self):
+        if self.isOnSale:
+            return self.priceOnSale
+        return self.price
+
+
 class ImageOfProduct(models.Model):
     image = models.ImageField(_('Image'), upload_to='products_images/',
                              blank=True, null=True)
@@ -126,6 +133,5 @@ class ImageOfProduct(models.Model):
     #title is not obligatory
     product = models.ForeignKey(Product, related_name='images',
                                 on_delete=models.CASCADE)
-
     def __str__(self):
         return self.image.url

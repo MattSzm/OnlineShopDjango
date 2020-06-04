@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6, a  {
 
 .product-list .item {
     width:30%;
-    padding:30px 30px 150px 0;
+    padding:30px 30px 40px 0;
     float:left;
     text-align:center;
     line-height:1.2;
@@ -83,6 +83,11 @@ h1, h2, h3, h4, h5, h6, a  {
 }
 .product-list .item  h4{
     font-family:'Agency FB',sans-serif ;
+}
+.product-list .item p{
+    font-family:'Agency FB',sans-serif ;
+    text-decoration: line-through;
+    color: #7d191e;
 }
 
 .product-detail{
@@ -110,6 +115,11 @@ h1, h2, h3, h4, h5, h6, a  {
 .product-detail #product-detail-desc a{
    text-decoration: none;
     color: #1e1e1e;
+}
+.product-detail #product-detail-desc h4{
+    font-family:'Agency FB',sans-serif ;
+    text-decoration: line-through;
+    color: #7d191e;
 }
 
 .logClass {
@@ -315,7 +325,7 @@ table.cart td.n {
 }
 .brand{
     padding-left: 110px;
-    margin-bottom: 50px;
+    margin-bottom: 85px;
     padding-top: 30px;
 }
 .brand img{
