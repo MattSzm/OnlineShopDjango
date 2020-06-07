@@ -13,7 +13,7 @@
 
 {% block content %}
 
-
+<div class="main-div">
     <div class="sidebar">
     {% if not categoryOfProducts %}
         <a href="{% url "product_list" %}" class="active">
@@ -58,6 +58,6 @@
                     <br><br>
                 {% endfor %}
     </div>
-
+</div>
 
 {% endblock content%}

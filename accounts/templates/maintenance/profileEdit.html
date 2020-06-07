@@ -4,8 +4,8 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-
-    <div class="order">
+<div class="order-flex2">
+    <div class="order2">
         <h3>Previous Orders:</h3>
             {% for singleOrder in  orders %}
                     <ul>
@@ -16,27 +16,28 @@
                                  {{ singleItem.product.name }}<a>
                                  [{{ singleItem.size }}]
                                  <a href="{{ singleItem.product.brand.get_absolute_url }}">{{ singleItem.product.brand }}</a>
-                            <span>{{ singleItem.productCost }}$</span>
+                            <h4>{{ singleItem.productCost }}$</h4>
                         </li>
                     {% endfor %}
                         <li>
                             Delivery
-                            <span>{{singleOrder.shipCost}}$</span>
+                            <h4>{{singleOrder.shipCost}}$</h4>
                         </li>
                     </ul>
                     <br>
                     <h5>
                         Total value:
-                        <span>{{ singleOrder.orderCost }}$</span>
+                        <h4>{{ singleOrder.orderCost }}$</h4>
                     </h5>
-                    <h6><a href="{% url 'cart:createPdf' singleOrder.id %}">Invoice</a></h6>
+                    <br>
+                    <h5><a href="{% url 'cart:createPdf' singleOrder.id %}">Invoice</a></h5>
                     <br>
                     <br>
             {% endfor %}
     </div>
 
 
-     <div class="order-form">
+     <div class="order-form2">
         <h1>Your details:</h1>
          <form action="{% url "accounts:dashboard" %}" method="post">
             {% for field in form %}
@@ -50,5 +51,5 @@
             <input type="submit" id="Payment"value="Submit changes" >
          </form>
      </div>
-
+</div>
 {% endblock content %}

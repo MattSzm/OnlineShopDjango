@@ -47,7 +47,7 @@
             <p>{{ product.description|linebreaksbr }}</p>
 
         </div>
-
+        <div class="photosDetail">
         {% thumbnail main_image.image "600x600" as im %}
             <a href="{{ im.url }}">
                 <img src="{% if product.mainImage %}{{ im.url }}{% else %}
@@ -65,6 +65,7 @@
                     {% endthumbnail %}
                 {% endif %}
             {% endfor %}
+        </div>
         </div>
     </div>
 

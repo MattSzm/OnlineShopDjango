@@ -4,7 +4,7 @@
 {% block title %}Create order{% endblock %}
 {% block content %}
     <h1 class="Checkout-header">Checkout</h1>
-
+<div class="order-flex">
     <div class="order">
         <h3>Order:</h3>
         <ul>
@@ -15,7 +15,7 @@
                         <a href="{% url "product_detail_view" product.brand.slug product.slug %}">
                             {{ product.name }}<a>
                          [{{ item.size }}]
-                        <span>{{ item.wholePrice }}$</span>
+                        <h4>{{ item.wholePrice }}$</h4>
                     </li>
 
 
@@ -23,13 +23,13 @@
             {% endfor %}
             <li>
                 Delivery
-                <span>{{cart.shipCost}}$</span>
+                <h4>{{cart.shipCost}}$</h4>
             </li>
         </ul>
         <br>
         <h5>
             Total value:
-            <span>{{ cart.cartTotalCostWithShip }}$</span>
+            <h4>{{ cart.cartTotalCostWithShip }}$</h4>
         </h5>
     </div>
     <div class="order-form">
@@ -60,7 +60,7 @@
         </form>
 
     </div>
-
+</div>
 {% endblock content %}
 
 

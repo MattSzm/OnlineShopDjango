@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="main-div">
     <div class="sidebar">
     {% if not categoryOfProducts %}
         <a href="{% url "product_list" %}" class="active">
@@ -50,7 +50,7 @@
         {% else %}
             {% for product in products %}
                         <div class="item">
-                            {% thumbnail product.mainImage.image "460x460"  as im %}
+                            {% thumbnail product.mainImage.image "440x440"  as im %}
                                 <a href="{{ product.get_absolute_url }}">
                                     <img src="{% if product.mainImage %}{{ im.url }}{% else %}
                                         {% static "images/no_image.png" %}{% endif %}">
@@ -69,6 +69,6 @@
             {% endfor %}
         {% endif %}
     </div>
-
+</div>
 
 {% endblock content%}

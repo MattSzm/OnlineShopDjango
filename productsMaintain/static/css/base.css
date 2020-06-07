@@ -5,8 +5,10 @@
 }
 
 h1, h2, h3, h4, h5, h6, a  {
-    font-family:'Agency FB',sans-serif ;
+    /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
     font-weight:300;
+    text-decoration: none;
 }
 
 .header{
@@ -21,8 +23,8 @@ h1, h2, h3, h4, h5, h6, a  {
 .header #logo{
     letter-spacing: 10px;
     text-decoration:none;
-    font-family:'Agency', sans-serif;
-    font-weight:300;
+    font-family: 'Oswald', sans-serif;
+    font-weight:400;
     text-transform:uppercase;
     font-size:34px;
     color:#fff;
@@ -45,7 +47,7 @@ h1, h2, h3, h4, h5, h6, a  {
 
 .header #menu {
     float:left;
-    margin:0px 120px;
+    margin:0px 2em;
     padding:0;
 }
 
@@ -53,96 +55,183 @@ h1, h2, h3, h4, h5, h6, a  {
     letter-spacing: 3px;
     list-style:none;
     float:left;
-    padding: 0px 45px;
+    margin-left: 10em;
 }
 
 .header #menu a#selected {
     text-decoration: underline;
 }
+@media screen and (max-width: 1340px) {
 
-#main {
-    margin-top: 100px;
-    float:left;
-    width: 100%;
-    margin-right:-120px;
-    margin-left:250px;
-    overflow:hidden;
+    .header #menu{
+        display: flex;
+        flex-direction: column;
+        margin-left: 3em;
+    }
+    .header #menu li{
+        margin-bottom: 10px;
+        margin-left: 0px;
+    }
+    #logo {
+        margin-bottom: 15px;
+    }
+    .header{
+        margin: 0em;
+        padding:10px;
+    }
 }
+
+.main-div{
+    display: flex;
+
+}
+#main {
+    margin-top: 70px;
+    width: 100%;
+    margin-left: 250px;
+    position: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 
 .product-list .item {
     width:30%;
-    padding:30px 30px 40px 0;
-    float:left;
     text-align:center;
     line-height:1.2;
+    margin-bottom: 4em;
 }
+
 
 .product-list .item  a{
     color: #1b1b1b;
-    position: static;
 }
 .product-list .item  h4{
-    font-family:'Agency FB',sans-serif ;
+     /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
 }
 .product-list .item p{
-    font-family:'Agency FB',sans-serif ;
+     /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
     text-decoration: line-through;
     color: #7d191e;
 }
 
-.product-detail{
-    text-align:justify;
-
-
+@media screen and (max-width: 1400px) {
+    .product-list .item img{
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+    }
 }
-.product-detail img{
-    position: static;
-    float:right;
-    padding:130px 210px 20px 0;
+@media screen and (max-width: 700px) {
+    .product-list .item img{
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+    }
+}
+@media screen and (max-width: 860px){
+    #main{
+        margin-left: 6em;
+    }
+}
 
+.product-detail{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+    margin-top: 8em;
+}
+
+.product-detail img{
+    margin-right: 10em;
 }
 
 .product-detail #extra {
-    padding-top: 220px;
-    padding-right: 20px;
 }
 
 .product-detail #product-detail-desc{
-    display: inline-grid;
-    padding-top: 130px;
-    padding-left: 400px;
+
+    margin-left: 400px;
 }
 .product-detail #product-detail-desc a{
    text-decoration: none;
     color: #1e1e1e;
 }
 .product-detail #product-detail-desc h4{
-    font-family:'Agency FB',sans-serif ;
+     /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
     text-decoration: line-through;
     color: #7d191e;
+}
+@media screen and (max-width: 1400px) {
+    .product-detail{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .product-detail img{
+        order: 0;
+        margin-right: 0px;
+        margin-left: 240px;
+    }
+    .product-detail #extra {
+        order: 2;
+        margin-bottom: 3em;
+    }
+    .product-detail #product-detail-desc{
+        order: 1;
+        margin-left: 240px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .product-detail{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .product-detail img{
+        order: 0;
+        margin-right: 0px;
+        margin-left: 3em;
+    }
+    .product-detail #extra {
+        order: 2;
+        margin-bottom: 3em;
+    }
+    .product-detail #product-detail-desc{
+        order: 1;
+        margin-left: 3em;
+        margin-bottom: 50px;
+    }
+
 }
 
 .logClass {
     max-width: 600px;
     margin: 0 auto;
     padding: 60px 0;
-    height: 400px;
     text-align: center;
+    margin-bottom: 100px;
 }
 .logClass h1 {
     font-size: 40px;
     transition-duration: 1s;
-    font-weight: 200;
+    font-weight: 400;
 }
 .logClass a{
     text-decoration: none;
 }
 .logClass p{
-     font-family:'Agency FB',sans-serif ;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
 }
 
 .logClass .login-form{
-    position: relative;
     font-size: 16px;
     height: auto;
     padding: 10px;
@@ -150,7 +239,8 @@ h1, h2, h3, h4, h5, h6, a  {
 }
 
 .logClass .login-form form{
-    font-family:'Agency FB',sans-serif ;
+     /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
 }
 .logClass .login-form form label{
 	  position: center;
@@ -161,7 +251,6 @@ h1, h2, h3, h4, h5, h6, a  {
 
 
 .cartClass {
-    max-width: 600px;
     margin: 0 auto;
     padding: 60px ;
     height: 150px;
@@ -174,16 +263,18 @@ h1, h2, h3, h4, h5, h6, a  {
 }
 table.cart{
     margin-bottom: 20px;
-    padding-left: 70px;
-    width:97%;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
     border-spacing:0;
     border-collapse: collapse;
 }
 table.cart th, table.cart td {
-    font-family:'Agency FB',sans-serif ;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
     font-size:24px;
     padding:25px;
-    padding-left: 100px;
+    padding-left: 10px;
     margin:0;
     text-align:left;
 }
@@ -196,8 +287,6 @@ table.cart a{
 
 table.cart tr:nth-child(odd){
      background: rgba(255, 242, 247, 0.33);
-}
-table.cart td.n {
 }
 
 
@@ -245,7 +334,9 @@ table.cart td.n {
 	padding:2px 4px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0f1524;
-    font-family:'Agency FB',sans-serif ;
+     /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
 
 }
 .createOrderOptions{
@@ -296,7 +387,9 @@ table.cart td.n {
 	padding:3px 13px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #0f1524;
-    font-family:'Agency FB',sans-serif ;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
     margin-bottom: 80px;
 }
 
@@ -324,9 +417,10 @@ table.cart td.n {
     margin-top: 50px;
 }
 .brand{
+    width: 80%;
     padding-left: 110px;
-    margin-bottom: 85px;
-    padding-top: 30px;
+    margin-bottom: 60px;
+    padding-top: 0px;
 }
 .brand img{
     position: static;
@@ -335,7 +429,9 @@ table.cart td.n {
 .brand span{
     padding-left: 25px;
     display: inline-grid;
-    font-family:'Agency FB',sans-serif ;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
     font-size: 18px;
 }
 .brandNo{
@@ -343,15 +439,31 @@ table.cart td.n {
     padding-top: 50px;
 }
 
+@media screen and (max-width: 1400px){
+    .brand{
+        margin-bottom: 40px;
+    }
+    .brand span{
+         padding-left: 0px;
+    }
+    .brand img {
+        margin-bottom: 1.5em;
+    }
+    .brandNo{
+        margin-bottom: 50px;
+    }
+}
 
 .order{
     margin-top: 50px;
     font-size:26px;
     float: right;
-    width: 700px;
+    width: 600px;
     background: rgba(255, 242, 247, 0.33);
     color: #1b1b1b;
-    padding-right: 150px;
+    padding-right: 50px;
+    margin-right: 120px;
+    margin-bottom: 130px;
 }
 .order a{
     text-decoration: none;
@@ -361,19 +473,24 @@ table.cart td.n {
 .order ul li{
     font-size:16px;
     padding-top: 14px;
-    font-family:'Agency FB',sans-serif ;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
     list-style:none;
 
 }
-.order span {
+.order h4{
     float:right;
     text-decoration: underline;
+}
+.order h5{
+    display: inline;
 }
 .order-form{
     float: left;
     margin-top: 50px;
     padding-left: 180px;
-    font-family:'Agency FB',sans-serif ;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
 }
 .order-form a{
     text-decoration: none;
@@ -387,6 +504,95 @@ table.cart td.n {
 	  padding: 0px;
 }
 
+@media screen and (max-width: 1250px) {
+    .order-flex{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .order{
+        width: 90%;
+        padding-right: 20px;
+        margin-right: 0px;
+    }
+    .order-form{
+        padding-left: 0px;
+        margin-left: 0px;
+        float: none;
+    }
+}
+
+
+.order2{
+    margin-top: 50px;
+    font-size:26px;
+    float: right;
+    width: 600px;
+    background: rgba(255, 242, 247, 0.33);
+    color: #1b1b1b;
+    padding-right: 50px;
+    margin-right: 120px;
+    margin-bottom: 130px;
+}
+.order2 a{
+    text-decoration: none;
+    color: black;
+}
+
+.order2 ul li{
+    font-size:16px;
+    padding-top: 14px;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+    list-style:none;
+
+}
+.order2 h4{
+    float:right;
+    text-decoration: underline;
+}
+.order2 h5{
+    display: inline;
+}
+.order-form2{
+    float: left;
+    margin-top: 50px;
+    padding-left: 180px;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+}
+.order-form2 a{
+    text-decoration: none;
+    color: #1b1b1b;
+}
+
+.order-form2  label{
+	  position: center;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 0px;
+}
+
+@media screen and (max-width: 1815px) {
+    .order-flex2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;}
+
+     .order2{
+         width: 90%;
+        padding-right: 20px;
+        margin-right: 0px;
+    }
+    .order-form2{
+        padding-left: 0px;
+        margin-left: 0px;
+        float: none;
+    }
+
+}
 
 ul.messages {
     margin:10px 50px;
@@ -434,7 +640,8 @@ ul.messages li a.close {
 }
 .payment{
     text-align: left;
-    font-family:'Agency FB',sans-serif;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
     margin-top: 100px;
     font-size: 24px;
     margin-bottom: 100px;
@@ -443,13 +650,14 @@ ul.messages li a.close {
 }
 
 .sidebar{
-  margin-top: 130px;
+  margin-top: 70px;
   position: fixed;
   width: 240px;
   left: 0;
-  height: 80%;
+  height: 60%;
   background: #1e1e1e;
   transition: all .5s ease;
+
 }
 .sidebar header{
   color: white;
@@ -470,7 +678,8 @@ ul.messages li a.close {
   border-bottom: 1px solid black;
   border-top: 1px solid rgba(255,255,255,.1);
   border-left: 5px solid transparent;
-  font-family: 'Agency FB',sans-serif;
+    /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
   transition: all .5s ease;
 }
 a.active,a:hover{
@@ -483,7 +692,9 @@ a.active,a:hover{
 }
 .sidebar a span{
     letter-spacing: 2px;
-    font-family:'Agency FB',sans-serif ;
+      /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
     text-decoration: none;
 }
 #check{
@@ -551,5 +762,19 @@ label #cancel{
     opacity: 1;
     visibility: visible;
   }
+}
+
+footer{
+    clear: both;
+    bottom: 0;
+    width: 100%;
+    height: 6em;
+    background-color: rgba(126, 26, 26, 0.63);
+
+    text-align: center;
+}
+footer h3{
+    padding-top: 2em;
+    color: rgba(245, 245, 245, 0.71);
 }
 
