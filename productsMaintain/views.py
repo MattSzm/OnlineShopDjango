@@ -1,8 +1,10 @@
-from django.shortcuts import  get_object_or_404, redirect
+from django.shortcuts import  get_object_or_404, redirect, render
 from django.views.generic.base import TemplateResponseMixin, View
 from . import models
-from .forms import SizeChooseForm
+from .forms import SizeChooseForm, searchingForm
 from cart.cart import Cart
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.contrib import messages
 
 
 class ProductListView(TemplateResponseMixin, View):
@@ -13,6 +15,7 @@ class ProductListView(TemplateResponseMixin, View):
         products = models.Product.objects.all().filter(
                                         available=True)
         categories = models.Category.objects.all()
+        searchForm = searchingForm()
 
         category = None
         if category_slug:
@@ -22,7 +25,8 @@ class ProductListView(TemplateResponseMixin, View):
         return self.render_to_response({'products': products,
                                         'categories': categories,
                                         'categoryOfProducts': category,
-                                        'section': 'products'})
+                                        'section': 'products',
+                                        'searchForm': searchForm})
 
 
 class ProductDetailView(TemplateResponseMixin, View):
@@ -57,6 +61,8 @@ class ProductDetailView(TemplateResponseMixin, View):
         size = models.Size.objects.get(id=request.POST['sizes'])
         if size:
             cart.addProduct(product, 1, size.id)
+            messages.success(request, '{} ({}) successfully added to your cart.'.format(
+                product.name, size))
             return redirect('cart:cartDetail')
         return redirect(product)
 
@@ -70,6 +76,7 @@ class BrandListView(TemplateResponseMixin, View):
                                         available=True)
         brand = get_object_or_404(models.Brand, slug=brand_slug)
         products = products.filter(brand=brand)
+        searchForm = searchingForm()
 
         categories = models.Category.objects.all()
         category = None
@@ -82,8 +89,38 @@ class BrandListView(TemplateResponseMixin, View):
                                         'categories': categories,
                                         'categoryOfProducts': category,
                                         'brand': brand,
-                                        'section': 'products'})
+                                        'section': 'products',
+                                        'searchForm': searchForm})
 
+def Searching(request):
+    if request.method == 'GET':
+        form = searchingForm(request.GET)
+        if form.is_valid():
+            input = form.cleaned_data['input']
 
+            outputBrand = models.Brand.objects.filter(name__search=input)
+            if outputBrand:
+                outputBrand = outputBrand[0]
+                output = models.Product.objects.filter(
+                brand__name__search=outputBrand)
+
+            else:
+                searchVector = SearchVector('name', 'description')
+                searchQuery = SearchQuery(input)
+                searchRank = SearchRank(searchVector, searchQuery)
+
+                output = models.Product.objects.annotate(
+                    search=searchVector,
+                    rank=searchRank
+                ).filter(search=searchQuery).order_by('-rank')
+
+            if output or outputBrand:
+                messages.info(request, 'Search results for phrases: {}'.format(
+                    input))
+                return render(request, 'products/product/searchResults.html',
+                              {'output': output,
+                               'outputBrand': outputBrand})
+    messages.error(request, 'There are no results. ')
+    return redirect('product_list')
 
 

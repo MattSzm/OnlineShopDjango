@@ -15,6 +15,16 @@
 {% block content %}
 <div class="main-div">
     <div class="sidebar">
+     <span>
+        <div class="searching">
+        <form class="searching-form" action="{% url "searching" %}" method="get">
+            {% for field in searchForm %}
+                {{ field }}
+            {% endfor %}
+            <input type="submit" id="search-button" value="Search">
+            </form>
+        </div>
+    </span>
     {% if not categoryOfProducts %}
         <a href="{% url "product_list" %}" class="active">
             <span>All Categories</span>

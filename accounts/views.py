@@ -35,7 +35,7 @@ def register(request):
         else:
             try:
                 form.clean_password_confirmation()
-                messages.error(request, 'There is already somebody with this email.')
+                messages.error(request, 'There is already someone with this email.')
             except:
                 messages.error(request, 'The passwords are different.')
 

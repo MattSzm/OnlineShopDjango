@@ -12,18 +12,9 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="main-div">
     <div class="sidebar">
-    <span>
-        <div class="searching">
-        <form class="searching-form" action="{% url "searching" %}" method="get">
-            {% for field in searchForm %}
-                {{ field }}
-            {% endfor %}
-            <input type="submit" id="search-button" value="Search">
-            </form>
-        </div>
-    </span>
     {% if not categoryOfProducts %}
         <a href="{% url "product_list" %}" class="active">
             <span>All Categories</span>
@@ -46,7 +37,17 @@
 
 
     <div id="main" class="product-list">
-                {% for product in products %}
+            {% if outputBrand.name %}
+                 <div class="brand">
+                    {% thumbnail outputBrand.logo "300x300" as ib %}
+                        <img src="{% if outputBrand.logo %}{{ ib.url }}{% else %}
+                               {% static "images/no_image.png" %}{% endif %}">
+                    {% endthumbnail %}
+                    <span>{{ outputBrand.description|linebreaksbr }}</span>
+                </div>
+            {% endif %}
+            {% if output %}
+                {% for product in output %}
                     <div class="item">
                         {% thumbnail product.mainImage.image "460x460"  as im %}
                             <a href="{{ product.get_absolute_url }}">
@@ -66,6 +67,9 @@
                     </div>
                     <br><br>
                 {% endfor %}
+            {% else %}
+                <div class="space"></div>
+            {% endif %}
     </div>
 </div>
 
