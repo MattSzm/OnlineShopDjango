@@ -15,6 +15,8 @@ from django.conf import settings
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from io import BytesIO
+from accounts.recommendationSystem import RecommendationEngine
+
 
 def CartDetail(request):
     cart = Cart(request)
@@ -62,6 +64,7 @@ class OrderView(TemplateResponseMixin, View):
 
     def post(self, request):
         cart = Cart(request)
+        recommendation = RecommendationEngine(request)
         form  = OrderForm(request.POST)
         if form.is_valid():
             cleanData = form.cleaned_data
@@ -82,6 +85,8 @@ class OrderView(TemplateResponseMixin, View):
                                                     quantity=item['quantity'],
                                                     costPerItem =
                                                         item['productObject'].currentPrice)
+                    recommendation.removeSingle(item['productObject'].id)
+
                 cart.clear()
                 request.session['orderId'] = order.id
                 return redirect(reverse('cart:payment'))

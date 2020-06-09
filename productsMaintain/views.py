@@ -5,6 +5,7 @@ from .forms import SizeChooseForm, searchingForm
 from cart.cart import Cart
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib import messages
+from accounts.recommendationSystem import RecommendationEngine
 
 
 class ProductListView(TemplateResponseMixin, View):
@@ -36,6 +37,9 @@ class ProductDetailView(TemplateResponseMixin, View):
     def get(self, request, category_slug, product_slug, id_image=None):
         product = get_object_or_404(models.Product,
                                     slug=product_slug)
+        recommendation = RecommendationEngine(request)
+        recommendation.addSignle(product.id)
+
         categories = models.Category.objects.all()
         form = SizeChooseForm()
         form.fields['sizes'].queryset = models.Size.objects.filter(

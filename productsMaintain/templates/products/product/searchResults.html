@@ -24,15 +24,6 @@
             <span>All Categories</span>
         </a>
     {% endif %}
-        {% for c in categories %}
-            {% if categoryOfProducts.slug == c.slug %}
-                <a href="{{ c.get_absolute_url }}" class="active">
-                     <span>{{ c.title }}</span></a>
-            {% else%}
-                <a href="{{ c.get_absolute_url }}">
-                     <span>{{ c.title }}</span></a>
-            {% endif %}
-        {% endfor %}
     </div>
 
 
