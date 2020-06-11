@@ -127,4 +127,7 @@ def Searching(request):
     messages.error(request, 'There are no results. ')
     return redirect('product_list')
 
-
+def MainPange(request):
+    Recommendation = RecommendationEngine(request)
+    return render(request, 'main/mainPage.html',
+                  {'recommendation': Recommendation})

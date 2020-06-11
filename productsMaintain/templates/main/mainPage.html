@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}
+    Main Page
+{% endblock %}
+
+{% block content %}
+    <div class="photoMain">
+    <div class="textMain">
+        <h1>Welcome to our shop!</h1>
+        {% if recommendation %}
+            <br><br>
+            <h3>Recommended products:</h3>
+            <br>
+            <div class="RecommendationImages">
+            {% for item in recommendation %}
+                <div class="RecommendationSingleImage">
+                {% thumbnail item.mainImage.image "300x300"  as im %}
+                            <a href="{{ item.get_absolute_url }}">
+                                <img src="{% if item.mainImage %}{{ im.url }}{% else %}
+                                    {% static "images/no_image.png" %}{% endif %}">
+                            </a>
+                {% endthumbnail %}
+                <br>
+                    {{ item.name }}
+                    {% if not item.isOnSale %}
+                        <h2 class="">{{ item.price }}$</h2>
+                    {% else %}
+                        <p>{{ item.price }}$</p>
+                        <h2>{{ item.priceOnSale }}$</h2>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    </div>
+
+
+{% endblock %}

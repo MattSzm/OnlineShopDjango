@@ -814,3 +814,39 @@ footer h3{
 .space{
     margin-bottom: 30em;
 }
+.photoMain{
+    background-image: url("../images/back3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+}
+.textMain{
+    text-align: center;
+       /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+    color: #7d191e;
+    padding-top: 2em;
+     -webkit-filter: blur(0px);
+}
+.RecommendationImages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 4em;
+}
+.RecommendationSingleImage{
+    color: rgba(255, 255, 255, 0.85);
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-bottom: 1em;
+}
+.RecommendationSingleImage p{
+     /*font-family:'Agency FB',sans-serif ;*/
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: line-through;
+    color: #7d191e;
+}
+
+

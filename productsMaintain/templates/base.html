@@ -20,7 +20,8 @@
     </div>
     <div class="header">
         <ul id="menu">
-            <a href="{% url "product_list" %}" id="logo">OnlineShop</a>
+            <a href="{% url "mainPage" %}" id="logo">OnlineShop</a>
+
             {% if section == 'products' %}
                 <li><a class="active" href="{% url "product_list" %}" >Products</a></li>
             {% else %}
@@ -33,7 +34,7 @@
                  <li><a href="{% url "accounts:dashboard" %}" >My account</a></li>
             {% endif %}
 
-               <li><a href="#" >Info</a></li>
+
         </ul>
 
         <ul id="user">
@@ -56,7 +57,7 @@
         </ul>
     {% endif %}
     {% block content %}
-        {% endblock %}
+    {% endblock %}
 
 </body>
 <footer>

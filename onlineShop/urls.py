@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
+from productsMaintain.views import MainPange
 
 
 urlpatterns = [
@@ -10,6 +10,7 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('products/', include('productsMaintain.urls')),
     path('admin/', admin.site.urls),
+    path('', MainPange, name='mainPage')
 
 ]
 
