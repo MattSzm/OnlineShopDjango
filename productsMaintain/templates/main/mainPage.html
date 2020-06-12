@@ -10,7 +10,7 @@
     <div class="photoMain">
     <div class="textMain">
         <h1>Welcome to our shop!</h1>
-        {% if recommendation %}
+        {% if recommendation.exist %}
             <br><br>
             <h3>Recommended products:</h3>
             <br>
@@ -34,6 +34,13 @@
                 </div>
             {% endfor %}
             </div>
+            {% else %}
+            <!--I'm not proud of it-->
+            <br><br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
         {% endif %}
     </div>
 

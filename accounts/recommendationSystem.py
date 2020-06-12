@@ -13,7 +13,8 @@ class RecommendationEngine:
     def addSignle(self, product_id):
         if len(self.recommended) >= 3:
             self.recommended.pop(0)
-        self.recommended.append(product_id)
+        if not product_id in self.recommended:
+            self.recommended.append(product_id)
 
     def clear(self):
         del self.session[settings.RECOMMENDATION_SESSION_ID]
@@ -28,3 +29,9 @@ class RecommendationEngine:
     def removeSingle(self, product_id):
         if product_id in self.recommended:
             self.recommended.remove(product_id)
+
+    @property
+    def exist(self):
+        if len(self.recommended)>0:
+            return True
+        return False

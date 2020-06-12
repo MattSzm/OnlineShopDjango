@@ -78,5 +78,7 @@
             <a id="buttonCreateOrder" href="{% url "cart:createOrder" %}">Checkout</a>
         {% endif %}
     </div>
-
+    {% if cart.isEmpty %}
+        <div class="space"></div>
+    {% endif %}
 {% endblock content %}

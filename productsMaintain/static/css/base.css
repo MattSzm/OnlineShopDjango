@@ -822,6 +822,7 @@ footer h3{
     height: auto;
     background-size: cover;
 }
+
 .textMain{
     text-align: center;
        /*font-family:'Agency FB',sans-serif ;*/
@@ -834,7 +835,7 @@ footer h3{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-bottom: 4em;
+    padding-bottom: 10em;
 }
 .RecommendationSingleImage{
     color: rgba(255, 255, 255, 0.85);
