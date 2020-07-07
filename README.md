@@ -2,7 +2,7 @@
 
 This is my personal project, which presents a clothing shop.
 
-I've created it with:
+## I've created it with:
 * Python Django
 * HTML
 * CSS
@@ -18,7 +18,7 @@ Whole app is working with Postgres database.
 However, I didn't attach data to the repository. You can add your own in django admin panel.
 
 
-The project has such features as:
+## The project has such features as:
 - [x] Creating user accounts along with the history of their orders.
 - [x] Customers can download a dynamically generated invoice for each paid order.
 - [x] E-mail notifications about new orders / account registrations.
@@ -37,7 +37,4 @@ Although I focused on presenting my 'backend' skills during work on this project
 In settings file, I hid all important data like secret keys, etc.
 
 ![](media-readMe/2.gif)
-
-(Unfortunately, gif videos aren't smooth.)
-
 
