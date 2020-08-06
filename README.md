@@ -3,7 +3,7 @@
 This is my personal project, which presents a clothing shop.
 
 ## I've created it with:
-* Python Django
+* Python[Django][djangolink]
 * HTML
 * CSS
 * (a little bit of JavaScript, just to create braintree payment process)
@@ -12,7 +12,7 @@ This is ready-to-work page.
 
 ![](media-readMe/1.gif)
 
-All Additional extensions can be found in 'InstalledThirdParty.txt'
+All required additional extensions can be found in 'InstalledThirdParty.txt'
 
 Whole app is working with Postgres database.
 However, I didn't attach data to the repository. You can add your own in django admin panel.
@@ -34,7 +34,7 @@ However, I didn't attach data to the repository. You can add your own in django 
 
 Although I focused on presenting my 'backend' skills during work on this project, I also tried to make my page a responsive one.
 
-In settings file, I hid all important data like secret keys, etc.
 
 ![](media-readMe/2.gif)
 
+[djangolink]: https://www.djangoproject.com/
