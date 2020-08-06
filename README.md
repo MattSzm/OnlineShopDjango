@@ -3,7 +3,7 @@
 This is my personal project, which presents a clothing shop.
 
 ## I've created it with:
-* Python[Django][djangolink]
+* Python[[Django]][djangolink]
 * HTML
 * CSS
 * (a little bit of JavaScript, just to create braintree payment process)
