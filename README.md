@@ -6,16 +6,13 @@ This is my personal project, which presents a clothing shop.
 * Python[[Django]][djangolink]
 * HTML
 * CSS
-* (a little bit of JavaScript, just to create braintree payment process)
-
-This is ready-to-work page.
+* JavaScript (just to create braintree payment process)
 
 ![](media-readMe/1.gif)
 
 All required additional extensions can be found in 'InstalledThirdParty.txt'
 
 Whole app is working with Postgres database.
-However, I didn't attach data to the repository. You can add your own in django admin panel.
 
 
 ## The project has such features as:
@@ -31,8 +28,6 @@ However, I didn't attach data to the repository. You can add your own in django 
 - [x] Subpages with particular brands.
 - [x] Ability to choose different sizes.
 - [x] Using class Views.
-
-Although I focused on presenting my 'backend' skills during work on this project, I also tried to make my page a responsive one.
 
 
 ![](media-readMe/2.gif)
