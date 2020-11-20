@@ -10,8 +10,6 @@ This is my personal project, which presents a clothing shop.
 
 ![](media-readMe/1.gif)
 
-All required additional extensions can be found in 'InstalledThirdParty.txt'
-
 Whole app is working with Postgres database.
 
 
@@ -20,14 +18,14 @@ Whole app is working with Postgres database.
 - [x] Customers can download a dynamically generated invoice for each paid order.
 - [x] E-mail notifications about new orders / account registrations.
 - [x] Recommendations based off of previously viewed products.
-- [x] Fully working payment system which supports credit cards.
+- [x] Fully working payment system supporting credit cards.
 - [x] A search engine that uses product names and descriptions, can also find a brand.
 - [x] Using 'thumbnail' to cache product and brand images.
 - [x] Notification system (django messages).
 - [x] Registration system prohibiting creation of several accounts to one e-mail address(Own user model and user manager).
 - [x] Subpages with particular brands.
 - [x] Ability to choose different sizes.
-- [x] Using class Views.
+
 
 
 ![](media-readMe/2.gif)
